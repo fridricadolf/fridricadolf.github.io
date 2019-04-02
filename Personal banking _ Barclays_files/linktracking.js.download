@@ -1,0 +1,430 @@
+function toCamelCase(str) {
+    "use strict";
+    return str
+        .replace(/\s(.)/g, function ($1) {
+            return $1.toUpperCase();
+        })
+        .replace(/\s/g, '');
+}
+
+function hasClass(elem, elemClassName) {
+    "use strict";
+    if (elem.classList) {
+        return elem.classList.contains(elemClassName);
+    }
+    return !!elem.className.match(new RegExp('(\\s|^)' + elemClassName + '(\\s|$)'));
+}
+
+jQuery.fn.getPath = function () {
+    if (this.length !== 1) {
+        throw 'Requires one element.';
+    }
+
+    var path,
+        node = this,
+        realNode,
+        name,
+        nodeParent,
+        nodeSibling;
+
+    while (node.length) {
+        realNode = node[0];
+        name = realNode.localName;
+        if (!name) {
+            break;
+        }
+        name = name.toLowerCase();
+
+        nodeParent = node.parent();
+
+        nodeSibling = nodeParent.children(name);
+        if (nodeSibling.length > 1) {
+            name += ':eq(' + nodeSibling.index(realNode) + ')';
+        }
+
+        path = name + (path ? '>' + path : '');
+        node = nodeParent;
+    }
+
+    return path;
+};
+
+var barclays = window.barclays || {};
+barclays.tracking = {
+    setLinkTracking: function () {
+        "use strict";
+        $('body').on('click', 'A', function () {
+
+                var isSearchTopTen = (hasClass(this, 'common-questions--list-entry') || $(this).parents('UL#common-questions-list').length > 0),
+                    isSearchSuggested = hasClass(this, 'headersearch-link'),
+                    linktype = 'o',
+                    linktext = '',
+                    linktagSections = [],
+                    linktagSectionsReordered,
+                    linkHref = this.href,
+                    searchText,
+                    eventInfo = {};
+
+                // If link is from Search Top 10 or Suggestions
+                if (('undefined' !== typeof branchFinder) && branchFinder && branchFinder.analyticsEventFired) {
+                    branchFinder.analyticsEventFired = false;
+                }
+                else if (isSearchTopTen || isSearchSuggested) {
+                    linktext = this.text;
+
+                    if (isSearchTopTen) {
+                        // If siteCatalyst exists
+                        if ('undefined' !== typeof s) {
+                            s.linkTrackVars = 'pageName,prop16,prop17,prop24,prop34,eVar25,prop21,prop22,prop23,prop60,prop63,events';
+                            s.prop21 = s.prop2 + ':SiteSearch';
+                            s.prop22 = $(this).attr('data-list-index');
+                            s.prop23 = 'Quicksearch';
+                            s.prop60 = 'QSTop10';
+                            s.prop63 = linktext;
+
+                            s.tl(true, linktype, s.pageName + ':Answer:QSTop10:' + toCamelCase(linktext));
+                        }
+
+                        // Build object for Digital Data Layer.
+                        eventInfo = {
+                            eventName: 'search QSTop10',
+                            timeStamp: new Date(),
+                            section: 'Header',
+                            subSection: 'Utilities',
+                            domPath: ['Header', 'Utilities', 'Quicksearch', 'Answer', 'QSTop10'],
+                            alt: null,
+                            label: linktext,
+                            destination: $(this).attr('data-list-index'),
+                            method: 'QSTop10',
+                            value: null,
+                            type: 'search',
+                            tool: 'Quicksearch',
+                            cssSelector: $(this).getPath(),
+                            processed: false
+                        };
+
+                    } else if (isSearchSuggested) {
+
+                        searchText = $('input#search-input').val();
+
+                        // If siteCatalyst exists
+                        if ('undefined' !== typeof s) {
+                            s.linkTrackVars = 'pageName,prop16,prop17,prop24,prop34,eVar25,eVar1,prop21,prop22,prop23,prop60,prop63,eVar63,events';
+                            s.events = s.linkTrackEvents = 'event1,event27';
+                            s.eVar1 = searchText;
+                            s.prop21 = s.prop2 + ':SiteSearch';
+                            s.prop22 = $(this).attr('data-list-index');
+                            s.prop23 = searchText;
+                            s.prop60 = 'QSSearchSuggest';
+                            s.prop63 = linktext;
+                            s.eVar63 = 1;
+
+                            s.tl(true, linktype, s.pageName + ':Answer:QSSuggest:' + toCamelCase(linktext));
+                        }
+
+                        // Build object for Digital Data Layer.
+                        eventInfo = {
+                            eventName: 'search QSSuggest',
+                            timeStamp: new Date(),
+                            section: 'Header',
+                            subSection: 'Utilities',
+                            domPath: ['Header', 'Utilities', 'Quicksearch', 'Answer', 'QSSuggest'],
+                            alt: null,
+                            label: linktext,
+                            destination: $(this).attr('data-list-index'),
+                            method: 'QSSuggest',
+                            value: searchText,
+                            type: 'search',
+                            tool: 'Quicksearch',
+                            cssSelector: $(this).getPath(),
+                            processed: false
+                        };
+                    }
+                }
+                else {
+                    var ddlType = 0 === $(this).closest('NAV').length ? 'click' : 'nav',
+                        ddlMethod = 0 === $(this).closest('.tabs').length ? 'link' : 'tab',
+                        ddlTool = 0 === $(this).closest('[data-component-type]').length ? null : $(this).closest('[data-component-type]').data('componentType'),
+                        titleTag = this.title,
+                        ccTitleTag,
+                        ccText,
+                        dynamicButton = $(this).attr('data-previous-state'),
+                        linktag;
+
+
+                    if ((linkHref.indexOf('.pdf') !== -1) || (linkHref.indexOf('.doc') !== -1) || (linkHref.indexOf('.xls') !== -1)) {
+                        linktype = 'd';
+                    }
+
+                    linktext = this.text.replace(/menu item level \d+/, '');
+
+                    if ((typeof titleTag !== 'undefined') && (titleTag !== '')) {
+                        ccTitleTag = toCamelCase(titleTag);
+                        linktagSections.push('alt:' + ccTitleTag);
+                    }
+
+                    ccText = toCamelCase(linktext);
+
+                    if ((typeof dynamicButton !== 'undefined') && (dynamicButton !== '')) {
+                        ccText = toCamelCase(dynamicButton);
+                    }
+                    linktagSections.push(ccText);
+
+                    linktagSections = barclays.tracking.generateLinkTagSections(this, linktagSections);
+                    linktagSectionsReordered = linktagSections.reverse();
+                    linktag = linktagSectionsReordered.join(':');
+
+                    if ((typeof branchFinder !== 'undefined') && branchFinder && branchFinder.analyticsClickEventFired) {
+                        linktag = 'Public:BranchFinder:Results:' + linktag;
+                        branchFinder.analyticsClickEventFired = false;
+                    }
+
+                    // If siteCatalyst exists
+                    if ('undefined' !== typeof s) {
+                        s.linkTrackVars = 'prop16,prop17,prop24,prop34,eVar25,events';
+                        s.linkTrackEvents = 'None';
+
+                        s.tl(true, linktype, linktag);
+                    }
+
+                    // Build object for Digital Data Layer.
+                    eventInfo = {
+                        eventName: ddlType + ' ' + ddlMethod,
+                        timeStamp: new Date(),
+                        section: linktagSectionsReordered[0],
+                        subSection: linktagSections[0],
+                        domPath: linktagSectionsReordered,
+                        alt: ccTitleTag,
+                        label: linktext,
+                        destination: linkHref,
+                        method: ddlMethod,
+                        value: null,
+                        type: ddlType,
+                        tool: ddlTool,
+                        cssSelector: $(this).getPath(),
+                        processed: false
+                    };
+                }
+
+                // Add event to Digital Data Layer
+                digitalData.events.push({eventInfo: eventInfo});
+                if ('undefined' !== typeof _satellite) {
+                    _satellite.track("processEvent");
+                }
+
+            })
+
+            .on('click', 'BUTTON', function () {
+                var eventInfo,
+                    searchText,
+                    linktype,
+                    linktext,
+                    linktagSections,
+                    linktagSectionsReordered,
+                    linktag,
+                    ddlTool,
+                    ccText,
+                    alt = null;
+
+                if ((typeof branchFinder !== 'undefined') && branchFinder && branchFinder.analyticsEventFired) {
+                    branchFinder.analyticsEventFired = false;
+                } else if (hasClass(this, 'btn-search')) {
+                    searchText = $('input#search-input').val();
+
+                    // If siteCatalyst exists
+                    if ('undefined' !== typeof s) {
+                        s.linkTrackVars = 'pageName,prop16,prop17,prop24,prop34,eVar25,eVar1,prop21,prop23,prop60,eVar63,events';
+                        s.eVar1 = searchText;
+                        s.prop21 = s.prop2 + ':SiteSearch';
+                        s.prop23 = searchText;
+                        s.prop60 = 'Search';
+                        s.eVar63 = 1;
+                        s.tl(true, 'o', s.pageName + ':Answer:Search');
+                    }
+
+                    // Build object for Digital Data Layer.
+                    eventInfo = {
+                        eventName: 'search QSSuggest',
+                        timeStamp: new Date(),
+                        section: 'Header',
+                        subSection: 'Utilities',
+                        domPath: ['Header', 'Utilities', 'Quicksearch', 'Answer', 'Search'],
+                        alt: alt,
+                        label: 'Search',
+                        destination: $(this).attr('data-list-index'),
+                        method: 'QSSuggest',
+                        value: searchText,
+                        type: 'search',
+                        tool: 'Quicksearch',
+                        cssSelector: $(this).getPath(),
+                        processed: false
+                    };
+
+                } else {
+                    linktype = 'o';
+                    linktext = this.innerText;
+                    linktagSections = [];
+                    ddlTool = 0 === $(this).closest('[data-component-type]').length ? null : $(this).closest('[data-component-type]').data('componentType');
+                    ccText = toCamelCase(linktext);
+
+                    linktagSections.push(ccText);
+
+                    linktagSections = barclays.tracking.generateLinkTagSections(this, linktagSections);
+                    linktagSectionsReordered = linktagSections.reverse();
+                    linktag = linktagSectionsReordered.join(':');
+                    alt = $(this).attr('title') ? $(this).attr('title') : null;
+
+                    // If siteCatalyst exists
+                    if ('undefined' !== typeof s) {
+                        s.linkTrackVars = 'prop16,prop17,prop24,prop34,eVar25,events';
+                        s.linkTrackEvents = 'None';
+                        s.tl(true, linktype, linktag);
+                    }
+
+                    // Build object for Digital Data Layer.
+                    eventInfo = {
+                        eventName: 'click button',
+                        timeStamp: new Date(),
+                        section: linktagSectionsReordered[0],
+                        subSection: linktagSections[0],
+                        domPath: linktagSectionsReordered,
+                        alt: alt,
+                        label: linktext,
+                        destination: null,
+                        method: 'button',
+                        value: null,
+                        type: 'click',
+                        tool: ddlTool,
+                        cssSelector: $(this).getPath(),
+                        processed: false
+                    };
+                }
+
+                // Add event to Digital Data Layer
+                digitalData.events.push({eventInfo: eventInfo});
+                if ('undefined' !== typeof _satellite) {
+                    _satellite.track("processEvent");
+                }
+
+            });
+    },
+
+    setOnChangeTracking: function () {
+        "use strict";
+        $('body').on('change', 'INPUT, SELECT, TEXTAREA', function () {
+
+            var tagName = $(this).prop("tagName"),
+                fieldName = $(this).attr('name'),
+                linktagSections = [],
+                linktagSectionsReordered,
+                method,
+                value = null,
+                type = 'form',
+                ddlTool = 0 === $(this).closest('[data-component-type]').length ? null : $(this).closest('[data-component-type]').data('componentType'),
+                eventInfo;
+
+            linktagSections.push(fieldName);
+
+            linktagSections = barclays.tracking.generateLinkTagSections(this, linktagSections);
+            linktagSectionsReordered = linktagSections.reverse();
+
+            // Set 'method' based on input type
+            if (tagName === 'SELECT') {
+                method = 'select';
+            } else if (tagName === 'TEXTAREA') {
+                method = 'textarea';
+            } else {
+                method = $(this).attr('type');
+            }
+
+            // Set 'value' based on input type if field marked as 'non-personal'
+            if (("undefined" !== typeof $(this).data('nonPersonal')) && (true === $(this).data('nonPersonal'))) {
+                if (tagName === 'INPUT') {
+                    switch ($(this).attr('type').toUpperCase()) {
+                        case 'RADIO':
+                            value = $('[name="' + fieldName + '"]:checked').val();
+                            break;
+                        case 'CHECKBOX':
+                            value = $(this).is(':checked') ? 'checked' : 'unchecked';
+                            break;
+                        default:
+                            value = $(this).val();
+                    }
+                } else {
+                    value = $(this).val();
+                }
+            }
+
+            // Build object for Digital Data Layer.
+            eventInfo = {
+                eventName: type + ' ' + method,
+                timeStamp: new Date(),
+                section: linktagSectionsReordered[0],
+                subSection: linktagSections[0],
+                domPath: linktagSectionsReordered,
+                alt: null,
+                label: fieldName,
+                destination: null,
+                method: method,
+                value: value,
+                type: type,
+                tool: ddlTool,
+                cssSelector: $(this).getPath(),
+                processed: false
+            };
+
+            // Add event to Digital Data Layer
+            digitalData.events.push({eventInfo: eventInfo});
+            if ('undefined' !== typeof _satellite) {
+                _satellite.track("processEvent");
+            }
+
+        });
+    },
+
+    generateLinkTagSections: function (el, linktagSections) {
+        "use strict";
+        var $relativeParent = $(el).closest('SECTION, [data-component-type]'),
+            dataComponentType,
+            patt,
+            higherMenuText,
+            newPart;
+
+        do {
+            dataComponentType = $relativeParent.attr('data-component-type');
+            if (typeof dataComponentType !== 'undefined') {
+                // Check if navigation menu item
+                patt = /MenuItemLevel\d+/g;
+                if (patt.test(dataComponentType)) {
+                    higherMenuText = toCamelCase($relativeParent.find('a').first().text().replace(/menu item level \d+/, ''));
+                    // only add if text is different to last entry in the array
+                    if (higherMenuText !== linktagSections.slice(-1)[0]) {
+                        dataComponentType = higherMenuText;
+                        linktagSections.push(toCamelCase(dataComponentType));
+                    }
+                } else {
+                    linktagSections.push(toCamelCase(dataComponentType));
+                }
+            } else if ($relativeParent.is('SECTION')) {
+                newPart = $relativeParent.find('h1,h2').first().text();
+                // Even if the section does not have a h1/h2 tag we will still push in the "Section:" hierarchy marker.
+                // This will give us a '::' in the final string to indicate a un-named value
+                linktagSections.push(toCamelCase("Section: " + newPart));
+            }
+            $relativeParent = $relativeParent.parents('SECTION, [data-component-type]').first();
+        } while ($relativeParent.length > 0);
+
+        // If link in in the Header or Footer insert the current banking area property in the penultimate position in the array.
+        if ((linktagSections.slice(-1)[0] === "Header") || (linktagSections.slice(-1)[0] === "Footer")) {
+            linktagSections.splice(-1, 0, s.prop1);
+        }
+
+        return linktagSections;
+    }
+};
+
+$(document).ready(function () {
+    "use strict";
+    barclays.tracking.setLinkTracking();
+    barclays.tracking.setOnChangeTracking();
+});

@@ -1,0 +1,25 @@
+_satellite.pushBlockingScript(function(event, target, $variables){
+  (function(){
+  var c, d;
+  var ccp         = unescape(_satellite.readCookie("CCP"));
+  var ccpCurrent  = unescape(_satellite.readCookie("CCP_CURRENT"));
+      ccpCurrent  = ccpCurrent == "" || ccpCurrent == "undefined" ? "publicuser" : ccpCurrent;
+  if(ccp=="undefined" || ccpCurrent==null)    return !1;
+  if(JSON.parse(ccp)[ccpCurrent].cat4=="off") return !1;
+  d                 = document.createElement("script");
+  d.dataset.id      ="r0c2z6osm";
+  d.dataset.timing  = "async";
+  d.dataset.version = "3.0";
+  d.className       = "kxct";
+  d.type            = "text/javascript";
+  d.innerHTML = [
+    "window.Krux||((Krux=function(){Krux.q.push(arguments)}).q=[]);",
+    "(function(){",
+    "  var k=document.createElement('script');k.type='text/javascript';k.async=true;",
+    "  k.src=(location.protocol==='https:'?'https:':'http:')+'//cdn.krxd.net/controltag/r0c2z6osm.js';",
+    "  var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(k,s);",
+    "}());"
+  ].join("\n");
+  document.body.appendChild(d);
+})();
+});

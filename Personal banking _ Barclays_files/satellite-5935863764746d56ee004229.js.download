@@ -1,0 +1,12 @@
+_satellite.pushBlockingScript(function(event, target, $variables){
+  (function(){
+  var ccp        = unescape(_satellite.readCookie("CCP"));
+  var ccpCurrent = unescape(_satellite.readCookie("CCP_CURRENT"));
+      ccpCurrent = ccpCurrent == "" || ccpCurrent == "undefined" ? "publicuser" : ccpCurrent;
+  if(ccp=="undefined" || ccpCurrent==null)    return !1;
+  if(JSON.parse(ccp)[ccpCurrent]==null)       return !1;
+  if(JSON.parse(ccp)[ccpCurrent].cat4=="off") return !1;
+  var oPixel     = document.createElement("img");
+      oPixel.src = "//www.facebook.com/tr?id=943061982514065&ev=PageView&noscript=1"
+})();
+});
