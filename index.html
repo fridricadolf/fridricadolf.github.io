@@ -1,6 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<!-- saved from url=(0033)https://www.poczta.imw.lublin.pl/ -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+
+
+<html>
+<head>
 <!--
  login.jsp
  * ***** BEGIN LICENSE BLOCK *****
@@ -17,16 +23,16 @@
  * ***** END LICENSE BLOCK *****
 -->
     
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9">
-    
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <title>Zimbra Web Client Sign In</title>
     
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=1;">
     <meta name="description" content="Zimbra provides open source server and client software for messaging and collaboration. To find out more visit http://www.zimbra.com.">
-    <link rel="stylesheet" type="text/css" href="./Zimbra Web Client Sign In_files/common,login,zhtml.css">
-	<link rel="stylesheet" type="text/css" href="./Zimbra Web Client Sign In_files/skin.css">
+    <link  rel="stylesheet" type="text/css" href="/css/common,login,zhtml.css?skin=serenity&v=130305092149">
+	<link  rel="stylesheet" type="text/css" href="/css/skin.css?skin=serenity&v=130305092149">
 	
-    <link rel="SHORTCUT ICON" href="https://www.poczta.imw.lublin.pl/img/logo/favicon.ico">
+    <link rel="SHORTCUT ICON" href="/img/logo/favicon.ico">
     
     
 </head>
@@ -43,31 +49,31 @@
 				<div id="ZLoginAppName">Web Client</div>
                 
                                 <form method="post" name="loginForm" action="https://www.poczta.imw.lublin.pl/" accept-charset="UTF-8">
-                                <input type="hidden" name="loginOp" value="login">
+                                <input type="hidden" name="loginOp" value="login"/>
                     
 				<table class="form">
                     
-                                                <tbody><tr>
+                                                <tr>
                                                     <td><label for="username">Username:</label></td>
-                                                    <td><input id="username" class="zLoginField" name="username" type="text" value="" size="40" maxlength="1024"></td>
+                                                    <td><input id="username" class="zLoginField" name="username" type="text" value="" size="40" maxlength="1024"/></td>
                                                 </tr>
                                             
                                         <tr>
                                             <td><label for="password">Password:</label></td>
-                                            <td><input id="password" autocomplete="off" class="zLoginField" name="password" type="password" value="" size="40" maxlength="1024"></td>
+                                            <td><input id="password" autocomplete="off" class="zLoginField" name="password" type="password" value="" size="40" maxlength="1024"/></td>
                                         </tr>
                             
                                         <tr>
                                             <td>&nbsp;</td>
                                             <td class="submitTD">
-                                                <input id="remember" value="1" type="checkbox" name="zrememberme">
+                                                <input id="remember" value="1" type="checkbox" name="zrememberme" />
                                                 <label for="remember">Stay signed in</label>
-                                                <input type="submit" class="ZLoginButton DwtButton" value="Sign In">
+                                                <input type="submit" class="ZLoginButton DwtButton" value="Sign In" />
                                             </td>
                                         </tr>
                         
 					<tr>
-						<td colspan="2"><hr></td>
+						<td colspan="2"><hr/></td>
 					</tr>
 					<tr>
 						<td>
@@ -76,31 +82,31 @@
 						<td>
 							<div class="postioning">
 								<select id="client" name="client" onchange="clientChange(this.options[this.selectedIndex].value)">
-									<option value="preferred" selected=""> Default</option>
-									<option value="advanced"> Advanced (Ajax)</option>
-									<option value="standard"> Standard (HTML)</option>
-									<option value="mobile"> Mobile</option>
+									<option value="preferred" selected > Default</option>
+									<option value="advanced"  > Advanced (Ajax)</option>
+									<option value="standard"  > Standard (HTML)</option>
+									<option value="mobile"  > Mobile</option>
 								</select>
-<script type="text/javascript">
+<script TYPE="text/javascript">
 	document.write("<a href='#' onclick='showWhatsThis()' id='ZLoginWhatsThisAnchor'>What's This?<"+"/a>");
-</script><a href="https://www.poczta.imw.lublin.pl/#" onclick="showWhatsThis()" id="ZLoginWhatsThisAnchor">What's This?</a>
+</script>
 									<div id="ZLoginWhatsThis" class="ZLoginInfoMessage" style="display:none;"><center style="margin-bottom:3px;"><b>Client Types:</b></center>	<b>Advanced</b> offers the full set of Web collaboration features. This Web Client works best with newer browsers and faster Internet connections. <br><br><b>Standard</b> is recommended when Internet connections are slow, when using older browsers, or for easier accessibility. <br><br><b>Mobile</b> is recommended for mobile devices. <br><br>To set <b>Default</b> to be your preferred client type, change the sign in options in your Preferences, General tab after you sign in.</div>
 									<div id="ZLoginUnsupported" class="ZLoginInfoMessage" style="display:none;">Note that your web browser or display does not fully support the Advanced version.  We strongly recommend that you use the Standard client.</div>
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2"><hr></td>
+							<td colspan="2"><hr/></td>
 						</tr>
                     
-					</tbody></table>
-				<div class="offline">Go offline with Zimbra Desktop. <a href="http://www.zimbra.com/products/desktop.html" target="_blank">Learn more</a></div>
-			</form></div>
+					</table>
+				<div class="offline">Go offline with Zimbra Desktop. <a href='http://www.zimbra.com/products/desktop.html' target='_blank'>Learn more</a></div>
+			</div>
 			<div class="decor1"></div>
 		</div>
 
 		<div class="Footer">
-			<div id="ZLoginNotice" class="legalNotice-small"><a target="_new" href="http://www.zimbra.com/">Zimbra</a> :: the leader in open source messaging and collaboration :: <a target="_new" href="http://blog.zimbra.com/">Blog</a> - <a target="_new" href="http://wiki.zimbra.com/">Wiki</a> - <a target="_new" href="http://www.zimbra.com/forums">Forums</a></div>
+			<div id="ZLoginNotice" class="legalNotice-small"><a target="_new" href="http://www.zimbra.com">Zimbra</a> :: the leader in open source messaging and collaboration :: <a target="_new" href="http://blog.zimbra.com">Blog</a> - <a target="_new" href="http://wiki.zimbra.com">Wiki</a> - <a target="_new" href="http://www.zimbra.com/forums">Forums</a></div>
 			<div class="copyright">
             Copyright © 2005-2013 VMware, Inc. All rights reserved. VMware and Zimbra are registered trademarks or trademarks of VMware, Inc.
 			</div>
@@ -361,6 +367,5 @@ function onLoad() {
 }
 
 </script>
-
-
-</body></html>
+</body>
+</html>
