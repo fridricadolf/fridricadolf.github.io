@@ -1,6 +1,0 @@
-/* TEAM */
-
-Design: MarkMaking
-Creator: Coopa Limited
-URL: http://coopa.net
-Description: Quality web design and development from a small and professional team.
