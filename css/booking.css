@@ -1,0 +1,230 @@
+/* Control Holder */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\0000320}}
+.booking-form {
+  position: relative;
+  width: 100%;
+  font: 17px/23px "PT Sans", sans-serif; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\0000325}}
+  .booking-form *::-webkit-input-placeholder {
+    color: #ffffff;
+    opacity: 1 !important; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\0000326}}
+  .booking-form *:-moz-placeholder {
+    color: #ffffff;
+    opacity: 1 !important; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\0000327}}
+  .booking-form *::-moz-placeholder {
+    color: #ffffff;
+    opacity: 1 !important; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\0000328}}
+  .booking-form *:-ms-input-placeholder {
+    color: #ffffff;
+    opacity: 1 !important; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\0000330}}
+  .booking-form input {
+    width: 100%;
+    height: 45px;
+    padding: 0 14px;
+    outline: none;
+    font: 17px/23px "PT Sans", sans-serif;
+    color: #ffffff;
+    background-color: rgba(158, 158, 158, 0.6);
+    border: 1px solid #3c3c3c;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\0000339}}
+  * + .booking-form {
+    margin-top: 0px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\0000340}}
+  .booking-form + * {
+    margin-top: 0px !important; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\0000342}}
+  .booking-form .btn {
+    display: block;
+    width: 100%;
+    padding: 17px 0px 18px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+    background: #51be63;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\0000354}}
+    .booking-form .btn:hover {
+      color: #191919;
+      background: #ffffff;
+      border-color: #ffffff; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\0000360}}
+    * + .booking-form .btn {
+      margin-top: 0px; }
+
+#saveForm {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 17px 0px 18px;
+  text-align: center;
+  color: #ffffff;
+  border: 0px;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  background: #51be63;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\0000365}}
+* + .tmInput {
+  margin-top: 10px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\0000370}}
+.controlHolder {
+  position: relative; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\0000372}}
+  * + .controlHolder {
+    margin-top: 10px; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\0000378}}
+.tmSelect:before {
+  content: '\f107';
+  font-family: "FontAwesome";
+  position: absolute;
+  top: 13px;
+  right: 17px;
+  z-index: 99; }
+
+/* Messages */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\0000389}}
+.error-message {
+  position: absolute;
+  top: 9px;
+  right: 4px;
+  font-weight: normal;
+  text-align: right;
+  width: 100%;
+  font-size: 10px;
+  line-height: 1em;
+  z-index: 4;
+  color: #FE5353; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\00003102}}
+.success-message {
+  position: absolute;
+  margin-top: 0 !important;
+  padding: 60px 10px 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: #191919;
+  font-size: 14px;
+  line-height: 20px;
+  background: #fff; }
+
+/* transformSelect CSS */
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\00003118}}
+.tmSelect {
+  clear: both;
+  width: 100%;
+  margin: 0px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\00003122}}
+  .tmSelect li {
+    position: relative;
+    list-style: none; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\00003126}}
+  .tmSelect span, .tmSelect input[type=text] {
+    position: relative;
+    cursor: pointer;
+    display: block;
+    left: 0;
+    top: 0;
+    margin: 0; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\00003135}}
+  .tmSelect.auto {
+    cursor: pointer;
+    padding: 0;
+    margin: 0 0 20px 0;
+    line-height: 20px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\00003137}}
+    .tmSelect.auto span {
+      background: transparent; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\00003144}}
+    .tmSelect.auto ul {
+      margin: 1px 0 0;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      width: 100%;
+      background: #F9F9F9; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\00003151}}
+    .tmSelect.auto > li:first-child > span {
+      padding: 7px 12px;
+      width: 35px;
+      height: 100%;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\00003160}}
+  .tmSelect ul, .tmSelect .transformSelectDropdown {
+    position: absolute;
+    width: 100%;
+    max-height: 210px;
+    padding: 7px 0px;
+    margin: 0px;
+    border-top: none;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    box-shadow: none;
+    background: #F9F9F9;
+    z-index: 10; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\00003173}}
+    .tmSelect ul span, .tmSelect .transformSelectDropdown span {
+      border: 0;
+      padding: 5px 13px; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\00003176}}
+      .tmSelect ul span:hover, .tmSelect .transformSelectDropdown span:hover {
+        background: #CCC; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\00003182}}
+  .tmSelect ul li input[type=checkbox] {
+    position: relative;
+    top: 2px;
+    margin: 0 5px 0 0;
+    cursor: pointer; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\00003191}}
+button.ui-state-default {
+  background: none;
+  border: none;
+  display: inline-block;
+  padding: 0;
+  outline: none;
+  outline-offset: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  padding: 4px 6px;
+  background: none;
+  color: #FFF;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  -webkit-transition: 0.3s all ease;
+  transition: 0.3s all ease; }
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/include\/_mixins\.scss}line{font-family:\00003249}}
+  button.ui-state-default::-moz-focus-inner {
+    border: none;
+    padding: 0; }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/D\:\/wamp\/www\/landing\/01\.February\/03\.Mercury\.25602\.landing\.nyan\/new\/2-develop\/site\/sass\/booking\.scss}line{font-family:\00003205}}
+.ui-datepicker-close {
+  float: right; }
